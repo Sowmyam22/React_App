@@ -24,7 +24,7 @@ body {
   background: rgb(34,193,195);
   background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
   padding: 0 20px;
-  margin: 0 0 5rem 0;
+  margin: 0 0 2rem 0;
 }
 
 .header-right {
@@ -37,7 +37,7 @@ body {
 }
 
 .menu-item {
-  margin: 0 1rem;
+  margin: 0 0.5rem;
 }
 
 .menu-item:hover {
@@ -61,16 +61,6 @@ body {
   padding: 20px;
   margin: auto;
   width: 30%;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 }
 
 .login-button {
@@ -99,8 +89,7 @@ input, select {
 .control label {
   font-weight: bold;
   flex: 1;
-  color: #464646;
-  margin-bottom: 0.5rem;
+  color: #050505;
 }
 
 .control input {
@@ -115,6 +104,25 @@ input, select {
 
 .control.invalid input {
   border-color: red;
-  background: #fbdada;
+  background: #fac1c1;
   color: red;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: -3px;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: rgb(158, 233, 227);
+  color: rgb(95, 95, 95);
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.not-found-error {
+  text-align: center;
 }

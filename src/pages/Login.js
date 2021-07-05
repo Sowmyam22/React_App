@@ -1,83 +1,90 @@
 import React, { useState } from "react";
-
-import ErrorAlert from "../components/error/Alert";
+import { useHistory } from "react-router-dom";
 
 function LoginPage(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState('');
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
   const [enteredPassword, setEnteredPassword] = useState('');
-  const [passwordIsValid, setPasswordIsValid] = useState('');
-  const [formIsValid, setFormIsValid] = useState(false);
-  const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const emailIsValid = enteredEmail.includes('@');
+  const emailInputIsInValid = !emailIsValid && enteredEmailTouched;
 
-    if (formIsValid) {
-      props.onLogin();
-    } else {
-      setShowErrorAlert(true);
-    }
-  }
+  const passwordIsValid = enteredPassword.trim().length > 6;
+  const passwordInputIsInValid = !passwordIsValid && enteredPasswordTouched;
+
+  let formIsValid = emailIsValid && passwordIsValid ? true : false;
+
+  const history = useHistory();
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6
-    )
   }
 
   const passwordChangeHanlder = (event) => {
     setEnteredPassword(event.target.value);
-
-    setFormIsValid(
-      enteredEmail.includes('@') && event.target.value.trim().length > 6
-    )
   }
 
   const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('@'));
+    setEnteredEmailTouched(true);
   }
 
   const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
+    setEnteredPasswordTouched(true);
+  }
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    setEnteredEmailTouched(true);
+    setEnteredPasswordTouched(true);
+
+    if (!formIsValid) {
+      return;
+    }
+
+    props.onLogin();
+    history.push('/home');
+
+    setEnteredEmail('');
+    setEnteredPassword('');
+
+    setEnteredEmailTouched(false);
+    setEnteredPasswordTouched(false);
   }
 
   return (
     <div>
-      {showErrorAlert && <ErrorAlert errorValue='Invali Email & Password! Please try again...!' />}
-
       <div className="form-control">
-        <h2 style={{ "textAlign": "center" }}>Please Login</h2>
+        <h2 style={{ "textAlign": "center" }}>Login Here</h2>
         <form onSubmit={submitHandler} noValidate>
-          <div className={`control ${emailIsValid === false ? 'invalid' : ''}`}>
+          <div className={`control ${emailInputIsInValid ? 'invalid' : ''}`}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Enter your email..."
               value={enteredEmail}
               onChange={emailChangeHandler}
               onBlur={validateEmailHandler}
             />
+            {emailInputIsInValid && <p className="error-text">Enter Valid Email</p>}
           </div>
 
-          <div className={`control ${passwordIsValid === false ? 'invalid' : ''}`}>
+          <div className={`control ${passwordInputIsInValid ? 'invalid' : ''}`}>
             <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Enter your password..."
               value={enteredPassword}
               onChange={passwordChangeHanlder}
               onBlur={validatePasswordHandler}
             />
+            {passwordInputIsInValid && <p className="error-text">Incorrect Password</p>}
           </div>
 
-          <button className="login-button">Login</button>
+          <button className="login-button" disabled={!formIsValid}>Login</button>
         </form>
       </div>
     </div>

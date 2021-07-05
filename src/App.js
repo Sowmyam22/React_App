@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
+
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
+import PageNotFound from './pages/PageNotFound';
 
 class App extends Component {
   constructor() {
@@ -52,11 +56,28 @@ class App extends Component {
         <div className="header">
           <h2>Logo</h2>
 
-          {this.state.isLoggedIn && <p className="menu-item" onClick={this.logoutHandler.bind(this)}>Logout</p>}
+          {this.state.isLoggedIn &&
+            <div className="header__menu-items">
+              <p className="menu-item">Profile</p>
+              <p className="menu-item" onClick={this.logoutHandler.bind(this)}>Logout</p>
+            </div>
+          }
         </div>
 
-        {!this.state.isLoggedIn && <Login onLogin={this.loginHandler.bind(this)} />}
-        {this.state.isLoggedIn && <Home items={this.state.listItems} />}
+        <Switch>
+          <Route exact path="/">
+            {!this.state.isLoggedIn && <Login onLogin={this.loginHandler.bind(this)} />}
+          </Route>
+          <Route path="/home">
+            {this.state.isLoggedIn && <Home items={this.state.listItems} />}
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path='*'>
+            <PageNotFound />
+          </Route>
+        </Switch>
       </>
     )
   }
