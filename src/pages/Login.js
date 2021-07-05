@@ -56,10 +56,10 @@ function LoginPage(props) {
   return (
     <div>
       <div className="form-control">
-        <h2 style={{ "textAlign": "center" }}>Login Here</h2>
+        <h2 style={{ "textAlign": "center" }}> Login Here </h2>
         <form onSubmit={submitHandler} noValidate>
           <div className={`control ${emailInputIsInValid ? 'invalid' : ''}`}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email"> Email </label>
             <input
               type="email"
               id="email"
@@ -68,11 +68,11 @@ function LoginPage(props) {
               onChange={emailChangeHandler}
               onBlur={validateEmailHandler}
             />
-            {emailInputIsInValid && <p className="error-text">Enter Valid Email</p>}
+            {emailInputIsInValid && <p className="error-text"> Enter Valid Email </p>}
           </div>
 
           <div className={`control ${passwordInputIsInValid ? 'invalid' : ''}`}>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password"> Password </label>
             <input
               type="password"
               id="password"
@@ -81,10 +81,10 @@ function LoginPage(props) {
               onChange={passwordChangeHanlder}
               onBlur={validatePasswordHandler}
             />
-            {passwordInputIsInValid && <p className="error-text">Incorrect Password</p>}
+            {passwordInputIsInValid && <p className="error-text"> Incorrect Password </p>}
           </div>
 
-          <button className="login-button" disabled={!formIsValid}>Login</button>
+          <button className="login-button" disabled={!formIsValid}> Login </button>
         </form>
       </div>
     </div>

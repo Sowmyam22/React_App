@@ -3,7 +3,7 @@ import Profile from "./Profile";
 
 function ProfileSettings(props) {
   return (
-    <div>User Profile Settings...!</div>
+    <h1>User Profile Settings...!</h1>
   )
 }
 
