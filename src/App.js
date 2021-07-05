@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import HomePage from './pages/Home';
-import LoginPage from './pages/Login';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      isLoggedIn: false,
       listItems: [
         {
           title: "Product One",
@@ -24,20 +25,25 @@ class App extends Component {
           itemDesc: "Product three description"
         }
       ],
-      homePage: true,
-      loginPage: false
     }
-
-    this.goToHome = this.goToHome.bind(this);
-    this.goToLogin = this.goToLogin.bind(this);
   }
 
-  goToHome() {
-    this.setState({ homePage: true, loginPage: false });
+  componentDidMount() {
+    const storedUserInformation = localStorage.getItem('isLoggedIn'); // fetching the user info from the local storage
+
+    if (storedUserInformation) {
+      this.setState({ isLoggedIn: true });
+    }
   }
 
-  goToLogin() {
-    this.setState({ homePage: false, loginPage: true });
+  loginHandler() {
+    localStorage.setItem('isLoggedIn', true); // storing the logged in info in the local storage
+    this.setState({ isLoggedIn: true })
+  }
+
+  logoutHandler() {
+    localStorage.removeItem('isLoggedIn'); // removing the user info from the local storage
+    this.setState({ isLoggedIn: false })
   }
 
   render() {
@@ -45,15 +51,12 @@ class App extends Component {
       <>
         <div className="header">
           <h2>Logo</h2>
-          <div className="header__menu-items">
-            <p className="menu-item" onClick={this.goToHome}>Home</p>
-            <p className="menu-item" onClick={this.goToLogin}>Login</p>
-          </div>
+
+          {this.state.isLoggedIn && <p className="menu-item" onClick={this.logoutHandler.bind(this)}>Logout</p>}
         </div>
 
-        {this.state.homePage && <HomePage items={this.state.listItems} />}
-
-        {this.state.loginPage && <LoginPage />}
+        {!this.state.isLoggedIn && <Login onLogin={this.loginHandler.bind(this)} />}
+        {this.state.isLoggedIn && <Home items={this.state.listItems} />}
       </>
     )
   }

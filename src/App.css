@@ -63,7 +63,7 @@ body {
   width: 30%;
 }
 
-input[type=text], select {
+input, select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -76,11 +76,45 @@ input[type=text], select {
 .login-button {
   width: 100%;
   background: rgb(34,193,195);
-  /* background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); */
   color: rgb(0, 0, 0);
   padding: 14px 20px;
   margin: 18px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.control {
+  margin: 1rem 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.control label,
+.control input {
+  display: block;
+}
+
+.control label {
+  font-weight: bold;
+  flex: 1;
+  color: #464646;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.control.invalid input {
+  border-color: red;
+  background: #fbdada;
+  color: red;
 }
