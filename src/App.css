@@ -16,35 +16,6 @@ body {
   padding: 1rem;
 }
 
-.header {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgb(34,193,195);
-  background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-  padding: 0 20px;
-  margin: 0 0 2rem 0;
-}
-
-.header-right {
-  float: right;
-}
-
-.header__menu-items {
-  display: flex;
-  align-items: center;
-}
-
-.menu-item {
-  margin: 0 0.5rem;
-}
-
-.menu-item:hover {
-  cursor: pointer;
-  color: rgb(5, 99, 94);
-}
-
 .home-content {
   text-align: center;
 }

@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import PageNotFound from './pages/PageNotFound';
+import ProfileSettings from './pages/ProfileSettings';
+import MainHeader from './components/header/MainHeader';
 
 class App extends Component {
   constructor() {
@@ -52,17 +54,8 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        <div className="header">
-          <h2>Logo</h2>
-
-          {this.state.isLoggedIn &&
-            <div className="header__menu-items">
-              <p className="menu-item">Profile</p>
-              <p className="menu-item" onClick={this.logoutHandler.bind(this)}>Logout</p>
-            </div>
-          }
-        </div>
+      <div>
+        <MainHeader isLoggedIn={this.state.isLoggedIn} logoutHandler={this.logoutHandler.bind(this)} />
 
         <Switch>
           <Route exact path="/">
@@ -71,14 +64,17 @@ class App extends Component {
           <Route path="/home">
             {this.state.isLoggedIn && <Home items={this.state.listItems} />}
           </Route>
-          <Route path="/profile">
+          <Route exact path="/profile">
             <Profile />
+          </Route>
+          <Route path="/profile/settings">
+            <ProfileSettings />
           </Route>
           <Route path='*'>
             <PageNotFound />
           </Route>
         </Switch>
-      </>
+      </div>
     )
   }
 }
