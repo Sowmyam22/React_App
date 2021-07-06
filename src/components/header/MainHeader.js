@@ -11,6 +11,7 @@ function MainHeader(props) {
 
       {props.isLoggedIn &&
         <nav>
+          <NavLink activeClassName={classes.active} to="/home"> Home </NavLink>
           <NavLink activeClassName={classes.active} to="/profile"> Profile </NavLink>
           <NavLink to="/" onClick={props.logoutHandler}> Logout </NavLink>
         </nav>

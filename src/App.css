@@ -1,19 +1,6 @@
-/* body {
-  background: rgb(34,193,195);
-  background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-  background-repeat: no-repeat;
-  height: 100vh;
-} */
-
 body { 
-  /* margin: 0; */
   margin: auto;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.App {
-  text-align: center;
-  padding: 1rem;
 }
 
 .home-content {
@@ -45,14 +32,14 @@ body {
   cursor: pointer;
 }
 
-.control {
+/* .control {
   margin: 1rem 0;
   display: flex;
   align-items: stretch;
   flex-direction: column;
-}
+} */
 
-.control label,
+/* .control label,
 .control input {
   display: block;
 }
@@ -83,7 +70,7 @@ body {
   color: red;
   font-size: 12px;
   margin-top: -3px;
-}
+} */
 
 button:disabled,
 button:disabled:hover,

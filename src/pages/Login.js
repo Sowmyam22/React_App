@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import Input from "../components/input/Input";
+
 function LoginPage(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
@@ -58,31 +60,27 @@ function LoginPage(props) {
       <div className="form-control">
         <h2 style={{ "textAlign": "center" }}> Login Here </h2>
         <form onSubmit={submitHandler} noValidate>
-          <div className={`control ${emailInputIsInValid ? 'invalid' : ''}`}>
-            <label htmlFor="email"> Email </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={enteredEmail}
-              onChange={emailChangeHandler}
-              onBlur={validateEmailHandler}
-            />
-            {emailInputIsInValid && <p className="error-text"> Enter Valid Email </p>}
-          </div>
+          <Input
+            inputLabel="Email"
+            type="email"
+            id="email"
+            name="email"
+            enteredInput={enteredEmail}
+            inputChangeHandler={emailChangeHandler}
+            validateInputHandler={validateEmailHandler}
+            inputIsInValid={emailInputIsInValid}
+          />
 
-          <div className={`control ${passwordInputIsInValid ? 'invalid' : ''}`}>
-            <label htmlFor="password"> Password </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={enteredPassword}
-              onChange={passwordChangeHanlder}
-              onBlur={validatePasswordHandler}
-            />
-            {passwordInputIsInValid && <p className="error-text"> Incorrect Password </p>}
-          </div>
+          <Input
+            inputLabel="Password"
+            type="password"
+            id="password"
+            name="password"
+            enteredInput={enteredPassword}
+            inputChangeHandler={passwordChangeHanlder}
+            validateInputHandler={validatePasswordHandler}
+            inputIsInValid={passwordInputIsInValid}
+          />
 
           <button className="login-button" disabled={!formIsValid}> Login </button>
         </form>

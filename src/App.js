@@ -55,14 +55,21 @@ class App extends Component {
   render() {
     return (
       <div>
-        <MainHeader isLoggedIn={this.state.isLoggedIn} logoutHandler={this.logoutHandler.bind(this)} />
+        <MainHeader
+          isLoggedIn={this.state.isLoggedIn}
+          logoutHandler={this.logoutHandler.bind(this)}
+        />
 
         <Switch>
           <Route exact path="/">
-            {!this.state.isLoggedIn && <Login onLogin={this.loginHandler.bind(this)} />}
+            {!this.state.isLoggedIn &&
+              <Login onLogin={this.loginHandler.bind(this)} />
+            }
           </Route>
           <Route path="/home">
-            {this.state.isLoggedIn && <Home items={this.state.listItems} />}
+            {this.state.isLoggedIn &&
+              <Home items={this.state.listItems} />
+            }
           </Route>
           <Route exact path="/profile">
             <Profile />
