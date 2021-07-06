@@ -61,22 +61,30 @@ class App extends Component {
         />
 
         <Switch>
-          <Route exact path="/">
-            {!this.state.isLoggedIn &&
+          {!this.state.isLoggedIn &&
+            <Route exact path="/">
               <Login onLogin={this.loginHandler.bind(this)} />
-            }
-          </Route>
-          <Route path="/home">
-            {this.state.isLoggedIn &&
+            </Route>
+          }
+
+          {this.state.isLoggedIn &&
+            <Route path="/home">
               <Home items={this.state.listItems} />
-            }
-          </Route>
-          <Route exact path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/profile/settings">
-            <ProfileSettings />
-          </Route>
+            </Route>
+          }
+
+          {this.state.isLoggedIn &&
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
+          }
+
+          {this.state.isLoggedIn &&
+            <Route path="/profile/settings">
+              <ProfileSettings />
+            </Route>
+          }
+
           <Route path='*'>
             <PageNotFound />
           </Route>
