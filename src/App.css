@@ -32,46 +32,6 @@ body {
   cursor: pointer;
 }
 
-/* .control {
-  margin: 1rem 0;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-} */
-
-/* .control label,
-.control input {
-  display: block;
-}
-
-.control label {
-  font-weight: bold;
-  flex: 1;
-  color: #050505;
-}
-
-.control input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.control.invalid input {
-  border-color: red;
-  background: #fac1c1;
-  color: red;
-}
-
-.error-text {
-  color: red;
-  font-size: 12px;
-  margin-top: -3px;
-} */
-
 button:disabled,
 button:disabled:hover,
 button:disabled:active {
@@ -83,4 +43,14 @@ button:disabled:active {
 
 .not-found-error {
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-control {
+    border-radius: 5px;
+    background-color: rgba(253,187,45,1);
+    padding: 20px;
+    margin: auto;
+    width: 80%;
+  }
 }
