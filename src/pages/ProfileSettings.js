@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
-import {users} from "../staticData/usersData";
+import { users } from "../staticData/usersData";
 
 function ProfileSettings(props) {
   const [enteredName, setEnteredName] = useState('');
@@ -15,7 +15,7 @@ function ProfileSettings(props) {
   let dobInputIsInValid;
 
   const history = useHistory();
-  let userData = users[0];
+  let userData = history.location.state.userInfo;
 
   const dateInputStyles = {
     width: '50%',
@@ -33,12 +33,12 @@ function ProfileSettings(props) {
     width: '50%',
   }
 
-  const nameChangeHandler = () => {
-
+  const nameChangeHandler = (event) => {
+    setEnteredName(event.target.value);
   }
 
-  const passwordChangeHandler = () => {
-
+  const passwordChangeHandler = (event) => {
+    setEnteredPassword(event.target.value);
   }
 
   const dobChangeHandler = (event) => {
@@ -77,8 +77,22 @@ function ProfileSettings(props) {
     }
   }, [enteredDob])
 
-  const submitHandler = (event) =>{
+  const submitHandler = (event) => {
     event.preventDefault();
+
+    const userIndex = users.findIndex((user) => user.id === userData.id);
+
+    let updatedUserData = userData;
+    
+    updatedUserData.name = enteredName;
+    updatedUserData.password = enteredPassword;
+    updatedUserData.dob = enteredDob;
+
+    if (userIndex > -1) {
+      users[userIndex] = updatedUserData;
+      props.logoutHandler();
+      history.replace('/');
+    }
   }
 
   const deleteCurrentUser = (event) => {

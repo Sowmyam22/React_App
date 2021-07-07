@@ -67,7 +67,10 @@ function LoginPage(props) {
 
   return (
     <div>
-      {showErrorAlert && <ErrorAlert errorValue="Invalid Email & Password!" />}
+      {showErrorAlert &&
+        <ErrorAlert errorValue="User doesn't exist! Please login with valid Email & Password" />
+      }
+
       <div className="form-control">
         <h2 style={{ "textAlign": "center" }}> Login Here </h2>
         <form onSubmit={submitHandler} noValidate>
