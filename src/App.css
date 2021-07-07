@@ -54,3 +54,83 @@ button:disabled:active {
     width: 80%;
   }
 }
+
+.cards {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card {
+  background: linear-gradient(135deg, rgb(34,193,195) 0%, rgb(252, 252, 251) 100%);
+	border-radius: 3px;
+	padding: 30px;
+	margin: 10px;
+	text-align: center;
+	width: 20%;
+	max-width: 100%;
+}
+
+.card img {
+	border-radius: 50%;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+	width: 75px;
+}
+
+.card small {
+	color: rgb(0, 0, 0);
+	display: block;
+}
+
+.card button {
+	background-color: rgba(253,187,45,1);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	padding: 10px 25px;
+	margin-top: 25px;
+  cursor: pointer;
+}
+
+.card.active button {
+	background-color: #748DFF;
+	border: 0;
+	box-shadow: 0px 2px 5px rgba(116, 141, 255, 0.7);
+	color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .cards {
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background: linear-gradient(135deg, rgb(34,193,195) 0%, rgb(252, 252, 251) 100%);
+    border-radius: 3px;
+    padding: 30px;
+    margin: 10px;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.edit-button {
+  background-color: rgb(63, 43, 245);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	padding: 10px 25px;
+	margin-top: 25px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: rgb(104, 88, 252);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	padding: 10px 25px;
+	margin-top: 25px;
+  cursor: pointer;
+}

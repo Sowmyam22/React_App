@@ -9,11 +9,10 @@ function Card(props) {
       <img
         src={imageUrl}
         alt="Avatar"
-        style={{ "width": "100%" }} />
-      <div className="container">
-        <h4><b>{title}</b></h4>
-        <p>{itemDesc}</p>
-      </div>
+        style={{ "width": "100%" }}
+      />
+      <h4>{title}</h4>
+      <small>{itemDesc}</small>
     </div>
   )
 }
