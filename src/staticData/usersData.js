@@ -7,6 +7,6 @@ const users = [
     password: "sowmya123",
     dob: "1993-11-22"
   }
-]
+];
 
-export default users;
+export { users };

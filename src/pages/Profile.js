@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 
 import Modal from "../components/modal/Modal";
 import SettingsIcon from "../svg/settings";
-import users from "../staticData/usersData";
+import {users} from "../staticData/usersData";
 
 function Profile(props) {
   const [showModal, setShowModal] = useState(false);
+
+  console.log(users);
 
   const userData = users[0];
   const history = useHistory();

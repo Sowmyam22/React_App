@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
+import {users} from "../staticData/usersData";
 
 function ProfileSettings(props) {
   const [enteredName, setEnteredName] = useState('');
@@ -14,6 +15,7 @@ function ProfileSettings(props) {
   let dobInputIsInValid;
 
   const history = useHistory();
+  let userData = users[0];
 
   const dateInputStyles = {
     width: '50%',
@@ -21,9 +23,7 @@ function ProfileSettings(props) {
   }
 
   useEffect(() => {
-    if (history.location.state.userInfo) {
-      let userData = history.location.state.userInfo;
-
+    if (userData) {
       setEnteredName(userData.name);
       setEnteredDob(userData.dob);
     }
@@ -77,12 +77,28 @@ function ProfileSettings(props) {
     }
   }, [enteredDob])
 
+  const submitHandler = (event) =>{
+    event.preventDefault();
+  }
+
+  const deleteCurrentUser = (event) => {
+    event.preventDefault();
+
+    const userIndex = users.findIndex((user) => user.id === userData.id);
+
+    if (userIndex > -1) {
+      users.splice(userIndex, 1);
+      props.logoutHandler();
+      history.replace('/');
+    }
+  }
+
   return (
     <Fragment>
       <div className="user-form-control">
         <h2 style={{ "textAlign": "center" }}>Please update your information below...!</h2>
         <hr />
-        <form className="profile-form">
+        <form className="profile-form" onSubmit={submitHandler}>
           <Input
             inputLabel="Name"
             type="text"
@@ -130,7 +146,7 @@ function ProfileSettings(props) {
           </div>
 
           <button className="update-button"> Update </button>
-          <button className="delete-button"> Delete </button>
+          <button className="delete-button" onClick={deleteCurrentUser}> Delete </button>
         </form>
       </div>
     </Fragment>

@@ -42,6 +42,7 @@ class App extends Component {
     }
   }
 
+
   loginHandler() {
     localStorage.setItem('isLoggedIn', true); // storing the logged in info in the local storage
     this.setState({ isLoggedIn: true })
@@ -81,7 +82,7 @@ class App extends Component {
 
           {this.state.isLoggedIn &&
             <Route path="/profile/settings">
-              <ProfileSettings />
+              <ProfileSettings logoutHandler={this.logoutHandler.bind(this)} />
             </Route>
           }
 

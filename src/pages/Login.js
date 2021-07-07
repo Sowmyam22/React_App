@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
+import ErrorAlert from "../components/error/Alert";
+import { users } from "../staticData/usersData";
+import { current } from "immer";
 
 function LoginPage(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
   const [enteredPassword, setEnteredPassword] = useState('');
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
 
   const emailIsValid = enteredEmail.includes('@');
   const emailInputIsInValid = !emailIsValid && enteredEmailTouched;
@@ -41,9 +45,15 @@ function LoginPage(props) {
     setEnteredEmailTouched(true);
     setEnteredPasswordTouched(true);
 
-    if (!formIsValid) {
+    const currentUser = users.filter((user) => {
+      return user.email === enteredEmail && user.password === enteredPassword;
+    })
+
+    if (!formIsValid || (currentUser.length == 0)) {
+      setShowErrorAlert(true);
       return;
     }
+
 
     props.onLogin();
     history.push('/home');
@@ -57,6 +67,7 @@ function LoginPage(props) {
 
   return (
     <div>
+      {showErrorAlert && <ErrorAlert errorValue="Invalid Email & Password!" />}
       <div className="form-control">
         <h2 style={{ "textAlign": "center" }}> Login Here </h2>
         <form onSubmit={submitHandler} noValidate>
