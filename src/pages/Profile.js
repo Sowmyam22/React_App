@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 
 import Modal from "../components/modal/Modal";
 import SettingsIcon from "../svg/settings";
+import users from "../staticData/usersData";
 
 function Profile(props) {
   const [showModal, setShowModal] = useState(false);
 
+  const userData = users[0];
   const history = useHistory();
 
   const profileHandler = () => {
@@ -18,7 +20,11 @@ function Profile(props) {
   }
 
   const profileEditHandler = () => {
-    history.push('/profile/settings');
+    history.push({
+      pathname: '/profile/settings',
+      search: `?name=${userData.name}`,
+      state: { userInfo: userData }
+    })
   }
 
   return (
@@ -30,7 +36,7 @@ function Profile(props) {
       <div className="cards">
         <div className="card" style={{ "position": "relative" }}>
           <img
-            src="https://cdn2.iconfinder.com/data/icons/avatars-99/62/avatar-370-456322-512.png"
+            src={userData.profilePic}
             alt=""
           />
           <div
@@ -39,8 +45,8 @@ function Profile(props) {
           >
             <SettingsIcon />
           </div>
-          <h4>Sowmya</h4>
-          <small>Programmer Analyst</small>
+          <h3 style={{ "marginBottom": "1px" }}>{userData.name}</h3>
+          <small>{userData.email}</small>
           <button onClick={profileHandler}>View More</button>
         </div>
       </div>
@@ -51,13 +57,18 @@ function Profile(props) {
             <img
               width="70"
               height="70"
-              src="https://cdn2.iconfinder.com/data/icons/avatars-99/62/avatar-370-456322-512.png"
+              src={userData.profilePic}
               alt=""
             />
-            <h3>Sowmya</h3>
-            <p>Programmer Analyst</p>
-            <p>msowmyadeveloper@gmail.com</p>
-            <p>DOB: 22 Nov 1993, Age: 27</p>
+            <h3
+              style={{ "marginBottom": "1px" }}
+            >
+              {userData.name}
+            </h3>
+            <p style={{ "marginTop": "1px", "fontSize": "14px" }}>
+              {userData.email}
+            </p>
+            <p>DOB: {userData.dob}</p>
             <p>Hi! This is Sowmya. I have joined CTS on May 24th 2021. I am very happy to be a part of CTS Family.</p>
 
             <button className="edit-button" onClick={profileEditHandler}>Edit</button>

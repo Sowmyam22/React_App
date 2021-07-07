@@ -134,3 +134,67 @@ button:disabled:active {
 	margin-top: 25px;
   cursor: pointer;
 }
+
+.user-form-control {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  margin: auto;
+  width: 45%;
+}
+
+.profile-form {
+  padding: 0 5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .user-form-control {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    margin: auto;
+    width: 80%;
+  }
+
+  .profile-form {
+    padding: 0;
+  }
+}
+
+.update-button {
+  background-color: rgb(63, 43, 245);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	padding: 10px 25px;
+  cursor: pointer;
+  margin: 1rem 1rem 0 0;
+}
+
+.update-button:hover {
+  background-color: rgb(104, 88, 252);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	padding: 10px 25px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: rgb(252, 0, 0);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	padding: 10px 25px;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+.delete-button:hover {
+  background-color: rgb(104, 88, 252);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: rgb(255, 255, 255);
+	padding: 10px 25px;
+  cursor: pointer;
+}

@@ -11,11 +11,19 @@ function Input(props) {
     enteredInput,
     inputChangeHandler,
     validateInputHandler,
-    inputIsInValid
+    inputIsInValid,
+    customStyles,
+    disabled
   } = props;
 
   return (
-    <div className={clsx('control', inputIsInValid ? 'invalid' : '')}>
+    <div className=
+      {clsx(
+        'control',
+        inputIsInValid ? 'invalid' : ''
+      )}
+      style={customStyles}
+    >
       <label htmlFor={id}> {inputLabel} </label>
 
       <input
@@ -25,6 +33,8 @@ function Input(props) {
         value={enteredInput}
         onChange={inputChangeHandler}
         onBlur={validateInputHandler}
+        disabled={disabled}
+        style={{ "backgroundColor": disabled && "#ccc", "cursor": disabled && "not-allowed" }}
       />
 
       {inputIsInValid && <p className="errorText"> Enter Valid Email </p>}
