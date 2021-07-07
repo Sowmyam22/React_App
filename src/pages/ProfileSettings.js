@@ -12,7 +12,6 @@ function ProfileSettings(props) {
 
   let nameInputIsInValid;
   let passwordInputIsInValid;
-  let dobInputIsInValid;
 
   const history = useHistory();
   let userData = history.location.state.userInfo;
@@ -22,16 +21,16 @@ function ProfileSettings(props) {
     marginRight: '1rem'
   }
 
+  const ageInputStyles = {
+    width: '50%',
+  }
+
   useEffect(() => {
     if (userData) {
       setEnteredName(userData.name);
       setEnteredDob(userData.dob);
     }
   }, [])
-
-  const ageInputStyles = {
-    width: '50%',
-  }
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -50,10 +49,6 @@ function ProfileSettings(props) {
   }
 
   const validatePasswordHandler = () => {
-
-  }
-
-  const validateDobHandler = () => {
 
   }
 
@@ -83,7 +78,7 @@ function ProfileSettings(props) {
     const userIndex = users.findIndex((user) => user.id === userData.id);
 
     let updatedUserData = userData;
-    
+
     updatedUserData.name = enteredName;
     updatedUserData.password = enteredPassword;
     updatedUserData.dob = enteredDob;
@@ -143,8 +138,6 @@ function ProfileSettings(props) {
               name="dob"
               enteredInput={enteredDob}
               inputChangeHandler={dobChangeHandler}
-              validateInputHandler={validateDobHandler}
-              inputIsInValid={dobInputIsInValid}
               customStyles={dateInputStyles}
             />
 
