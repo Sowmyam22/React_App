@@ -7,11 +7,16 @@ import { users } from "../staticData/usersData";
 function ProfileSettings(props) {
   const [enteredName, setEnteredName] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
+  const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
   const [enteredDob, setEnteredDob] = useState('');
   const [enteredAge, setEnteredAge] = useState('');
 
   let nameInputIsInValid;
-  let passwordInputIsInValid;
+
+  const passwordIsValid = enteredPassword.trim().length > 6;
+  const passwordInputIsInValid = !passwordIsValid && enteredPasswordTouched;
+
+  let formIsValid = passwordIsValid ? true : false;
 
   const history = useHistory();
   let userData = history.location.state.userInfo;
@@ -49,7 +54,7 @@ function ProfileSettings(props) {
   }
 
   const validatePasswordHandler = () => {
-
+    setEnteredPasswordTouched(true);
   }
 
   const calculateAge = (dob) => {
@@ -74,6 +79,10 @@ function ProfileSettings(props) {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    if (!formIsValid) {
+      return;
+    }
 
     const userIndex = users.findIndex((user) => user.id === userData.id);
 
@@ -128,6 +137,7 @@ function ProfileSettings(props) {
             inputChangeHandler={passwordChangeHandler}
             validateInputHandler={validatePasswordHandler}
             inputIsInValid={passwordInputIsInValid}
+            errorText="Password must have atleast 7 characters"
           />
 
           <div style={{ "display": "flex", "alignItems": "center", "marginTop": "-1rem" }}>
@@ -152,7 +162,7 @@ function ProfileSettings(props) {
             />
           </div>
 
-          <button className="update-button"> Update </button>
+          <button className="update-button" disabled={!formIsValid}> Update </button>
           <button className="delete-button" onClick={deleteCurrentUser}> Delete </button>
         </form>
       </div>

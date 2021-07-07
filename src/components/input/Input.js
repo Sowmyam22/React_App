@@ -13,7 +13,8 @@ function Input(props) {
     validateInputHandler,
     inputIsInValid,
     customStyles,
-    disabled
+    disabled,
+    errorText
   } = props;
 
   return (
@@ -37,7 +38,7 @@ function Input(props) {
         style={{ "backgroundColor": disabled && "#ccc", "cursor": disabled && "not-allowed" }}
       />
 
-      {inputIsInValid && <p className="errorText"> Enter Valid Email </p>}
+      {inputIsInValid && <p className="errorText"> {errorText} </p>}
 
     </div>
   )

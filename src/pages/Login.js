@@ -83,6 +83,7 @@ function LoginPage(props) {
             inputChangeHandler={emailChangeHandler}
             validateInputHandler={validateEmailHandler}
             inputIsInValid={emailInputIsInValid}
+            errorText="Enter valid Email"
           />
 
           <Input
@@ -94,6 +95,7 @@ function LoginPage(props) {
             inputChangeHandler={passwordChangeHanlder}
             validateInputHandler={validatePasswordHandler}
             inputIsInValid={passwordInputIsInValid}
+            errorText="Enter valid Password"
           />
 
           <button className="login-button" disabled={!formIsValid}> Login </button>
