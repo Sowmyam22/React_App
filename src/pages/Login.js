@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
+import Button from "../components/button/Button";
 import ErrorAlert from "../components/error/Alert";
 import InfoIcon from "../svg/Info";
 import Tooltip from "../components/tooltip/Tooltip";
 import { users } from "../staticData/usersData";
-import { current } from "immer";
 
 function LoginPage(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -26,10 +26,21 @@ function LoginPage(props) {
   const history = useHistory();
 
   const tooltipSection = {
-    display: "flex", 
+    display: "flex",
     alignItems: "center",
     fontSize: "12px"
   }
+
+  // const loginButtonStyles = {
+  //   width: "100%",
+  //   background: "rgb(34, 193, 195)",
+  //   color: "rgb(0, 0, 0)",
+  //   padding: "14px 20px",
+  //   margin: "18px 0",
+  //   border: "none",
+  //   borderRadius: "4px",
+  //   cursor: "pointer"
+  // }
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -57,7 +68,7 @@ function LoginPage(props) {
       return user.email === enteredEmail && user.password === enteredPassword;
     })
 
-    if (!formIsValid || (currentUser.length == 0)) {
+    if (!formIsValid || (currentUser.length === 0)) {
       setShowErrorAlert(true);
       return;
     }
@@ -106,9 +117,12 @@ function LoginPage(props) {
             errorText="Enter valid Password"
           />
 
-          <button className="login-button" disabled={!formIsValid}> Login </button>
+          <Button
+            buttonText="Login"
+            disabled={!formIsValid}
+          />
 
-          <div style={{ "marginTop": "-24px", }}>
+          <div style={{ "marginTop": "-10px", }}>
             <Tooltip text="Email: sowmya@gmail.com, Password: sowmya123">
               <div style={tooltipSection}>
                 <InfoIcon />

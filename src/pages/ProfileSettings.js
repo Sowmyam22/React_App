@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
+import Button from "../components/button/Button";
 import { users } from "../staticData/usersData";
 
 function ProfileSettings(props) {
@@ -32,12 +33,27 @@ function ProfileSettings(props) {
     width: '50%',
   }
 
+  const deleteButtonStyles = {
+    backgroundColor: "#ff0808",
+    border: "none",
+    color: "white",
+    padding: "10px",
+    textAlign: "center",
+    textDecoration: "none",
+    display: "inline-block",
+    fontSize: "16px",
+    margin: "4px 2px",
+    cursor: "pointer",
+    width: "100%",
+    borderRadius: "4px"
+  }
+
   useEffect(() => {
     if (userData) {
       setEnteredName(userData.name);
       setEnteredDob(userData.dob);
     }
-  }, [])
+  }, [userData])
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -164,8 +180,19 @@ function ProfileSettings(props) {
             />
           </div>
 
-          <button className="update-button" disabled={!formIsValid}> Update </button>
-          <button className="delete-button" onClick={deleteCurrentUser}> Delete </button>
+          <div style={{ "display": "flex" }}>
+            <Button
+              buttonText="Update"
+              disabled={!formIsValid}
+            />
+
+            <Button
+              buttonText="Delete"
+              disabled={!formIsValid}
+              onClick={deleteCurrentUser}
+              customStyles={deleteButtonStyles}
+            />
+          </div>
         </form>
       </div>
     </Fragment>

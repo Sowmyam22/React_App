@@ -2,13 +2,12 @@ import React, { Fragment, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Modal from "../components/modal/Modal";
+import Button from "../components/button/Button";
 import SettingsIcon from "../svg/settings";
-import {users} from "../staticData/usersData";
+import { users } from "../staticData/usersData";
 
 function Profile(props) {
   const [showModal, setShowModal] = useState(false);
-
-  console.log(users);
 
   const userData = users[0];
   const history = useHistory();
@@ -49,7 +48,13 @@ function Profile(props) {
           </div>
           <h3 style={{ "marginBottom": "1px" }}>{userData.name}</h3>
           <small>{userData.email}</small>
-          <button onClick={profileHandler}>View More</button>
+
+          <div style={{ "margin": "0 20%" }}>
+            <Button
+              buttonText="View More"
+              onClick={profileHandler}
+            />
+          </div>
         </div>
       </div>
 
@@ -73,7 +78,12 @@ function Profile(props) {
             <p>DOB: {userData.dob}</p>
             <p>Hi! This is Sowmya. I have joined CTS on May 24th 2021. I am very happy to be a part of CTS Family.</p>
 
-            <button className="edit-button" onClick={profileEditHandler}>Edit</button>
+            <div style={{ "margin": "0 40%" }}>
+              <Button
+                buttonText="Edit"
+                onClick={profileEditHandler}
+              />
+            </div>
           </div>
         </Modal>
       )}
