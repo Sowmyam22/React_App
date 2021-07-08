@@ -19,7 +19,9 @@ function ProfileSettings(props) {
   let formIsValid = passwordIsValid ? true : false;
 
   const history = useHistory();
-  let userData = history.location.state.userInfo;
+  let userData = history.location.state
+    ? history.location.state.userInfo
+    : users[0];
 
   const dateInputStyles = {
     width: '50%',
