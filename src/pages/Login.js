@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
 import ErrorAlert from "../components/error/Alert";
+import InfoIcon from "../svg/Info";
+import Tooltip from "../components/tooltip/Tooltip";
 import { users } from "../staticData/usersData";
 import { current } from "immer";
 
@@ -22,6 +24,12 @@ function LoginPage(props) {
   let formIsValid = emailIsValid && passwordIsValid ? true : false;
 
   const history = useHistory();
+
+  const tooltipSection = {
+    display: "flex", 
+    alignItems: "center",
+    fontSize: "12px"
+  }
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -99,6 +107,15 @@ function LoginPage(props) {
           />
 
           <button className="login-button" disabled={!formIsValid}> Login </button>
+
+          <div style={{ "marginTop": "-24px", }}>
+            <Tooltip text="Email: sowmya@gmail.com, Password: sowmya123">
+              <div style={tooltipSection}>
+                <InfoIcon />
+                <p style={{ "marginLeft": "2px" }}>Check the default user credentials here...!</p>
+              </div>
+            </Tooltip>
+          </div>
         </form>
       </div>
     </div>

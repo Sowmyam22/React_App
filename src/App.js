@@ -42,7 +42,6 @@ class App extends Component {
     }
   }
 
-
   loginHandler() {
     localStorage.setItem('isLoggedIn', true); // storing the logged in info in the local storage
     this.setState({ isLoggedIn: true })
