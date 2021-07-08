@@ -2,6 +2,8 @@ import React from "react";
 import Card from "../components/card/Card";
 
 function HomePage(props) {
+  const {items} = props;
+
   return (
     <>
       <div className="home-content">
@@ -10,7 +12,7 @@ function HomePage(props) {
       </div>
 
       <div className="list-items">
-        {props.items.map((item, index) => {
+        {items.map((item, index) => {
           return (
             <Card key={index} item={item} />
           )
