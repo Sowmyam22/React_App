@@ -6,7 +6,7 @@ function HomePage(props) {
 
   return (
     <>
-      <div className="home-content">
+      {/* <div className="home-content">
         <h2>This is the Home Page!</h2>
         <p>Check all the items over here!</p>
       </div>
@@ -17,7 +17,7 @@ function HomePage(props) {
             <Card key={index} item={item} />
           )
         })}
-      </div>
+      </div> */}
     </>
   )
 }

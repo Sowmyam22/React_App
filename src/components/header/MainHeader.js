@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 import classes from "./MainHeader.module.css";
+import MenuIcon from "../../svg/Menu";
+import SidePanel from "../sidePanel/SidePanel";
 
 function MainHeader(props) {
+  const [openSidepanel, setOpenSidepanel] = useState(false);
+
+  const handleSidePanel = () => {
+    setOpenSidepanel(true);
+  }
+
+  const handleClosePanel = () => {
+    setOpenSidepanel(false);
+  }
+
   return (
     <div className={classes.header}>
-      <h2> Logo </h2>
+      {openSidepanel && (
+        <SidePanel closeSidepanel={handleClosePanel}>
+          {props.isLoggedIn &&
+            <nav>
+              <NavLink activeClassName={classes.active} to="/home"> Home </NavLink>
+              <NavLink activeClassName={classes.active} to="/profile"> Profile </NavLink>
+              <NavLink to="/" onClick={props.logoutHandler}> Logout </NavLink>
+            </nav>
+          }
+        </SidePanel>
+      )}
 
-      {props.isLoggedIn &&
-        <nav>
-          <NavLink activeClassName={classes.active} to="/home"> Home </NavLink>
-          <NavLink activeClassName={classes.active} to="/profile"> Profile </NavLink>
-          <NavLink to="/" onClick={props.logoutHandler}> Logout </NavLink>
-        </nav>
-      }
+      <MenuIcon onClick={handleSidePanel} />
     </div >
   )
 }
