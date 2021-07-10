@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 import classes from "./MainHeader.module.css";
 import MenuIcon from "../../svg/Menu";
 import SidePanel from "../sidePanel/SidePanel";
+import AuthContext from "../../store/auth-context";
 
 function MainHeader(props) {
   const [openSidepanel, setOpenSidepanel] = useState(false);
+
+  const authCtx = useContext(AuthContext);
 
   const handleSidePanel = () => {
     setOpenSidepanel(true);
@@ -17,21 +20,26 @@ function MainHeader(props) {
     setOpenSidepanel(false);
   }
 
+  const handleLogout = () => {
+    setOpenSidepanel(false);
+    authCtx.onLogout();
+  }
+
   return (
     <div className={classes.header}>
-      {openSidepanel && (
+      {openSidepanel && authCtx.isLoggedIn && (
         <SidePanel closeSidepanel={handleClosePanel}>
-          {props.isLoggedIn &&
+          {authCtx.isLoggedIn &&
             <nav>
-              <NavLink activeClassName={classes.active} to="/home"> Home </NavLink>
-              <NavLink activeClassName={classes.active} to="/profile"> Profile </NavLink>
-              <NavLink to="/" onClick={props.logoutHandler}> Logout </NavLink>
+              <NavLink activeClassName={classes.active} to="/home" onClick={handleClosePanel}> Home </NavLink>
+              <NavLink activeClassName={classes.active} to="/profile" onClick={handleClosePanel}> Profile </NavLink>
+              <NavLink to="/" onClick={handleLogout}> Logout </NavLink>
             </nav>
           }
         </SidePanel>
       )}
 
-      <MenuIcon onClick={handleSidePanel} />
+      {authCtx.isLoggedIn && <MenuIcon onClick={handleSidePanel} />}
     </div >
   )
 }
