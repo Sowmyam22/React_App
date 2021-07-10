@@ -1,9 +1,10 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
 import Button from "../components/button/Button";
 import { users } from "../staticData/usersData";
+import AuthContext from "../store/auth-context";
 
 function ProfileSettings(props) {
   const [enteredName, setEnteredName] = useState('');
@@ -20,6 +21,8 @@ function ProfileSettings(props) {
   let formIsValid = passwordIsValid ? true : false;
 
   const history = useHistory();
+  const authCtx = useContext(AuthContext);
+
   let userData = history.location.state
     ? history.location.state.userInfo
     : users[0];
@@ -112,7 +115,7 @@ function ProfileSettings(props) {
 
     if (userIndex > -1) {
       users[userIndex] = updatedUserData;
-      props.logoutHandler();
+      authCtx.onLogout();
       history.replace('/');
     }
   }
@@ -124,7 +127,7 @@ function ProfileSettings(props) {
 
     if (userIndex > -1) {
       users.splice(userIndex, 1);
-      props.logoutHandler();
+      authCtx.onLogout();
       history.replace('/');
     }
   }
@@ -188,7 +191,6 @@ function ProfileSettings(props) {
 
             <Button
               buttonText="Delete"
-              disabled={!formIsValid}
               onClick={deleteCurrentUser}
               customStyles={deleteButtonStyles}
             />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../components/input/Input";
@@ -7,6 +7,7 @@ import ErrorAlert from "../components/error/Alert";
 import InfoIcon from "../svg/Info";
 import Tooltip from "../components/tooltip/Tooltip";
 import { users } from "../staticData/usersData";
+import AuthContext from "../store/auth-context";
 
 function LoginPage(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -24,6 +25,7 @@ function LoginPage(props) {
   let formIsValid = emailIsValid && passwordIsValid ? true : false;
 
   const history = useHistory();
+  const authCtx = useContext(AuthContext);
 
   const tooltipSection = {
     display: "flex",
@@ -74,7 +76,7 @@ function LoginPage(props) {
     }
 
 
-    props.onLogin();
+    authCtx.onLogin(enteredEmail, enteredPassword);
     history.push('/home');
 
     setEnteredEmail('');
