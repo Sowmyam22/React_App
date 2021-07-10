@@ -8,9 +8,20 @@ body {
 }
 
 .list-items {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+}
+
+.list-items .card {
+  width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+  .list-items .card {
+    width: 64%;
+  }
 }
 
 .form-control {
@@ -30,6 +41,24 @@ body {
   .form-control {
     border-radius: 5px;
     background-color: rgba(253,187,45,1);
+    padding: 20px;
+    margin: auto;
+    width: 80%;
+  }
+}
+
+.to-do-form-control {
+  /* padding: 30px; */
+  margin: auto;
+  width: 50%;
+}
+
+.todo-form {
+  display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .to-do-form-control {
     padding: 20px;
     margin: auto;
     width: 80%;
@@ -158,4 +187,29 @@ body {
 	color: rgb(255, 255, 255);
 	padding: 10px 25px;
   cursor: pointer;
+}
+
+.to-do-list-control {
+  margin: auto;
+  width: 50%;
+}
+
+.todo-list-item {
+  border: 1px solid rgb(190, 187, 187);
+  border-radius: 5px;
+  background-color: rgba(253,187,45,1);
+  padding: 10px;
+  margin: 0.1rem;
+  cursor: pointer;
+  color: white;
+}
+
+.todo-list-item:hover {
+  border: 1px solid rgb(190, 187, 187);
+  border-radius: 5px;
+  background-color: rgb(250, 212, 132);
+  padding: 10px;
+  margin: 0.1rem;
+  cursor: pointer;
+  color: rgb(56, 55, 55);
 }

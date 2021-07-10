@@ -33,6 +33,7 @@ function MainHeader(props) {
             <nav>
               <NavLink activeClassName={classes.active} to="/home" onClick={handleClosePanel}> Home </NavLink>
               <NavLink activeClassName={classes.active} to="/profile" onClick={handleClosePanel}> Profile </NavLink>
+              <NavLink activeClassName={classes.active} to="/to-do" onClick={handleClosePanel}> Add ToDo </NavLink>
               <NavLink to="/" onClick={handleLogout}> Logout </NavLink>
             </nav>
           }

@@ -1,14 +1,12 @@
 import React from "react";
 import Card from "../components/card/Card";
+import { items } from "../staticData/itemsData";
 
 function HomePage(props) {
-  const {items} = props;
-
   return (
     <>
-      {/* <div className="home-content">
-        <h2>This is the Home Page!</h2>
-        <p>Check all the items over here!</p>
+      <div className="home-content">
+        <h2>Check all the items over here...!</h2>
       </div>
 
       <div className="list-items">
@@ -17,7 +15,7 @@ function HomePage(props) {
             <Card key={index} item={item} />
           )
         })}
-      </div> */}
+      </div>
     </>
   )
 }

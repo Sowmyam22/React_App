@@ -8,6 +8,7 @@ function Input(props) {
     type,
     id,
     name,
+    placeholder,
     enteredInput,
     inputChangeHandler,
     validateInputHandler,
@@ -31,6 +32,7 @@ function Input(props) {
         type={type}
         id={id}
         name={name}
+        placeholder={placeholder}
         value={enteredInput}
         onChange={inputChangeHandler}
         onBlur={validateInputHandler}
