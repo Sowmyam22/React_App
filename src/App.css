@@ -198,17 +198,19 @@ body {
   border: 1px solid rgb(190, 187, 187);
   border-radius: 5px;
   background-color: rgba(253,187,45,1);
-  padding: 10px;
+  padding: 1px 10px;
   margin: 0.1rem;
   cursor: pointer;
   color: white;
+  border: none;
 }
 
 .todo-list-item:hover {
-  border: 1px solid rgb(190, 187, 187);
+  /* border: 1px solid rgb(255, 255, 255); */
+  border: none;
   border-radius: 5px;
   background-color: rgb(250, 212, 132);
-  padding: 10px;
+  padding: 1px 10px;
   margin: 0.1rem;
   cursor: pointer;
   color: rgb(56, 55, 55);

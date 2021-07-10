@@ -8,8 +8,7 @@ function ToDoList() {
       {items.map((item, index) => {
         return (
           <div className="todo-list-item">
-            <span className="glyphicon glyphicon-ok icon" aria-hidden="true"></span>
-            {item.title}
+            <p>{item.title}</p>
           </div>
         )
       })}
