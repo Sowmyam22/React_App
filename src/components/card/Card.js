@@ -9,7 +9,7 @@ function Card(props) {
       <img
         src={imageUrl}
         alt="Avatar"
-        style={{ "width": "100%" }}
+        style={{ "width": "50%" }}
       />
       <h4>{title}</h4>
       <small>{itemDesc}</small>
