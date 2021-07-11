@@ -2,7 +2,9 @@ import React from "react";
 
 import { items } from "../staticData/itemsData";
 
-function ToDoList() {
+function ToDoList(props) {
+  const todoItems = props.filteredList.length > 0 ? props.filteredList : items;
+
   const markAsDone = (event, selectedItem) => {
     if (event.target.tagName === 'P') {
       event.target.classList.toggle('markedDone');
@@ -17,7 +19,7 @@ function ToDoList() {
 
   return (
     <div className="to-do-list-control">
-      {items.map((item, index) => {
+      {todoItems.map((item, index) => {
         return (
           <div key={item.id} className="todo-list-item" onClick={(e) => markAsDone(e, item)}>
             <p style={{ "textDecoration": (item.done) ? "markedDone" : '' }}>{item.title}</p>

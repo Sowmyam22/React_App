@@ -9,6 +9,7 @@ import ToDoList from "./ToDoList";
 function AddToDo() {
   const [enteredItem, setEnteredItem] = useState('');
   const [enteredItemTouched, setEnteredItemTouched] = useState(false);
+  const [filteredTodoList, setFilteredTodoList] = useState([]);
 
   const itemIsValid = enteredItem.trim().length > 6;
   const itemInputIsInValid = !itemIsValid && enteredItemTouched;
@@ -25,6 +26,13 @@ function AddToDo() {
   }
 
   const itemChangeHandler = (event) => {
+    let searchText = event.target.value;
+
+    let searchedItem = items.filter(item => {
+      return item.title.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()) == true;
+    })
+
+    setFilteredTodoList(searchedItem);
     setEnteredItem(event.target.value);
   }
 
@@ -50,8 +58,6 @@ function AddToDo() {
 
     setEnteredItem('');
   }
-
-  console.log("on submit", items);
 
   return (
     <Fragment>
@@ -84,7 +90,7 @@ function AddToDo() {
         </form>
       </div>
 
-      <ToDoList />
+      <ToDoList filteredList={filteredTodoList} />
       
     </Fragment>
   )
