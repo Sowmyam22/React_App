@@ -3,7 +3,7 @@ const items = [
         id: 1,
         title: "Product One",
         imageUrl: "https://www.windowscentral.com/sites/wpcentral.com/files/styles/large/public/field/image/2020/10/hp-spectre-x360-14-press-1.jpg",
-        done: true,
+        done: false,
     },
     {
         id: 2,
