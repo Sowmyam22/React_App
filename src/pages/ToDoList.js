@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { items } from "../staticData/itemsData";
+import CloseIcon from "../svg/Close";
 
 function ToDoList(props) {
-  const todoItems = props.filteredList.length > 0 ? props.filteredList : items;
+  const [listItems, setListItems] = useState(props.filteredList.length > 0 ? props.filteredList : items);
 
   const markAsDone = (event, selectedItem) => {
     if (event.target.tagName === 'P') {
@@ -17,12 +18,28 @@ function ToDoList(props) {
     })
   }
 
+  const deleteTodoHandler = (event, selectedItem) => {
+    event.preventDefault();
+
+    let currentItems = listItems;
+    let itemIndex = currentItems.findIndex((item) => item.id === selectedItem.id);
+
+    if (itemIndex > -1) {
+      currentItems.splice(itemIndex, 1);
+      setListItems([...currentItems]);
+    }
+  }
+
   return (
     <div className="to-do-list-control">
-      {todoItems.map((item, index) => {
+      {listItems.map((item, index) => {
         return (
           <div key={item.id} className="todo-list-item" onClick={(e) => markAsDone(e, item)}>
-            <p style={{ "textDecoration": (item.done) ? "markedDone" : '' }}>{item.title}</p>
+            <p style={{ "textDecoration": (item.done) ? "markedDone" : '', "cursor": "pointer" }}>{item.title}</p>
+
+            <div onClick={(e) => deleteTodoHandler(e, item)}>
+              <CloseIcon />
+            </div>
           </div>
         )
       })}
